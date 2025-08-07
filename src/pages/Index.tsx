@@ -1,12 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import WelcomeScreen from '@/components/WelcomeScreen';
+import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
+import StructureSection from '@/components/StructureSection';
+import ActivitiesCarousel from '@/components/ActivitiesCarousel';
+import ImpactSection from '@/components/ImpactSection';
+import OpportunitiesSection from '@/components/OpportunitiesSection';
+import JoinCommunitySection from '@/components/JoinCommunitySection';
 
 const Index = () => {
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  const handleWelcomeComplete = () => {
+    setShowWelcome(false);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      {showWelcome && <WelcomeScreen onComplete={handleWelcomeComplete} />}
+      
+      <main className={`transition-opacity duration-1000 ${showWelcome ? 'opacity-0' : 'opacity-100'}`}>
+        <HeroSection />
+        <AboutSection />
+        <StructureSection />
+        <ActivitiesCarousel />
+        <ImpactSection />
+        <OpportunitiesSection />
+        <JoinCommunitySection />
+      </main>
     </div>
   );
 };
