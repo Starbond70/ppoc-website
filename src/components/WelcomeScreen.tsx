@@ -11,12 +11,12 @@ const WelcomeScreen = ({ onComplete }: WelcomeScreenProps) => {
 
   useEffect(() => {
     const timer1 = setTimeout(() => setShowMessage(true), 500);
-    const timer2 = setTimeout(() => setShowButton(true), 1500);
+    const timer2 = setTimeout(() => onComplete(), 5000);
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
     };
-  }, []);
+  }, [onComplete]);
 
   return (
     <div className="fixed inset-0 hero-gradient flex items-center justify-center z-50">
@@ -30,18 +30,6 @@ const WelcomeScreen = ({ onComplete }: WelcomeScreenProps) => {
           </p>
         </div>
         
-        {showButton && (
-          <div className="animate-scale-in">
-            <Button 
-              variant="hero" 
-              size="lg" 
-              onClick={onComplete}
-              className="text-lg px-8 py-6"
-            >
-              Enter Orbit Club
-            </Button>
-          </div>
-        )}
       </div>
     </div>
   );
