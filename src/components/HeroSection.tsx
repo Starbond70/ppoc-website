@@ -13,7 +13,7 @@ const HeroSection = () => {
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
         <div className="animate-fade-in">
           <center>
-          <img src="public/favicon.ico" alt="Logo" className="w-90 h-64 mb-6 blend-lighten" />
+          <img src="https://raw.githubusercontent.com/RAVOKERcodes/orbit-club-connect/refs/heads/main/public/favicon.ico" alt="Logo" className="w-90 h-64 mb-6 blend-lighten" />
           </center>
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-6">
             <span className="text-gradient">Public Policy Opinion</span> Cell
