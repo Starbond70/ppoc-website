@@ -1,40 +1,41 @@
 const StructureSection = () => {
   const hierarchy = [
     {
-      level: "Executive Board",
-      positions: ["President", "Vice President", "Secretary", "Treasurer"],
+      level:"Core",
+      positions: ["President", "Vice President", "General Secretary", "Joint Secretary"],
       color: "bg-primary",
     },
     {
-      level: "Department Heads",
-      positions: ["Technical Lead", "Events Manager", "Marketing Head", "Operations Lead"],
+      level: "Cabinet",
+      positions: ["Departmental Head", "Senior Member", "Junior Member", "Assistant"],
       color: "bg-accent",
     },
-    {
-      level: "Team Members",
-      positions: ["Developers", "Designers", "Content Creators", "Coordinators"],
-      color: "bg-secondary",
-    },
+    
   ];
 
   const departments = [
     {
-      name: "Technical Development",
+      name: "Knowledge and Development",
       description: "Building innovative solutions and technical projects",
       icon: "💻",
     },
     {
-      name: "Events & Workshops",
+      name: "Project and Research",
       description: "Organizing educational events and skill-building workshops",
       icon: "🎯",
     },
     {
-      name: "Marketing & Outreach",
+      name: "Technical and Creative",
       description: "Promoting club activities and building community presence",
       icon: "📢",
     },
     {
-      name: "Operations",
+      name: "Organizational and Sponsorship",
+      description: "Managing day-to-day activities and administrative tasks",
+      icon: "⚙️",
+    },
+    {
+      name: "Editorial and Marketing",
       description: "Managing day-to-day activities and administrative tasks",
       icon: "⚙️",
     },

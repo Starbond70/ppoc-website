@@ -4,24 +4,37 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import activities1 from '@/assets/activities-1.jpg';
 import activities2 from '@/assets/activities-2.jpg';
 import activities3 from '@/assets/activities-3.jpg';
+// import activities4 from '@/assets/activities-4.jpg';
 
 const activities = [
   {
     id: 1,
-    title: "Tech Innovation Lab",
-    description: "Students collaborate on cutting-edge technology projects, developing solutions for real-world challenges.",
+    title: "The Policy Colloquium",
+    description: "The annual policy case competition organised by the society, spanning across three stages, where participants delve into the depths of societal problems and come up with unique solutions.",
     image: activities1,
   },
   {
     id: 2,
-    title: "Annual Tech Conference",
-    description: "Our flagship event where members present their projects and learn from industry experts.",
+    title: "OPCLAVE",
+    description: "The PubliCon (Panel Discussion) and The Policy Concours (Case Competition) organised under Opclave are one of it’s kind on the college campus.",
     image: activities2,
   },
   {
     id: 3,
-    title: "Achievement Recognition",
-    description: "Celebrating our members' outstanding contributions to technology and community impact.",
+    title: "Janhit Mein Jaari",
+    description: "This is a regular intra-society conducted by the KnD Department of the society that analyses and enhances the understanding of various social issues and policy developments.",
+    image: activities3,
+  },
+  {
+    id: 4,
+    title: "Element se Elegant Tak",
+    description: "The workshop conducted by the Tech and Creative Department of the society lets you master your technical skills and brush up your creative visions.",
+    image: activities3,
+  },
+  {
+    id: 5,
+    title: "From Data to Decisions",
+    description: "The workshop conducted by the PnR department of the society offers you the necessary guidance to explore and realise your research interests.",
     image: activities3,
   },
 ];

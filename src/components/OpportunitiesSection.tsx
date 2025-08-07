@@ -3,34 +3,34 @@ import { Button } from '@/components/ui/button';
 const OpportunitiesSection = () => {
   const opportunities = [
     {
-      title: "Leadership Positions",
-      description: "Take charge and develop your leadership skills by heading departments or organizing events.",
-      benefits: ["Leadership experience", "Network building", "Skill development"],
+      title: "Expert Talks",
+      description: "Hear from leading public policy professionals about current trends and key issues.",
+      // benefits: ["Leadership experience", "Network building", "Skill development"],
     },
     {
-      title: "Project Collaboration",
-      description: "Work on real-world projects with fellow members and industry mentors.",
-      benefits: ["Technical skills", "Portfolio building", "Industry exposure"],
+      title: "Workshops on Key Topics",
+      description: "Attend workshops that focus on important and timely issues in public policy.",
+      // benefits: ["Technical skills", "Portfolio building", "Industry exposure"],
     },
     {
-      title: "Mentorship Programs",
-      description: "Guide junior members and receive mentorship from experienced alumni.",
-      benefits: ["Teaching experience", "Personal growth", "Career guidance"],
+      title: "Policy Insight Sessions",
+      description: "Explore major policy issues and potential solutions through focused discussions.",
+      // benefits: ["Teaching experience", "Personal growth", "Career guidance"],
     },
     {
-      title: "Volunteer Initiatives",
-      description: "Contribute to community outreach and social impact programs.",
-      benefits: ["Social impact", "Community service", "Personal fulfillment"],
+      title: "Collaborations with Institutions",
+      description: "Participate in workshops organized with national and international public policy institutions",
+      // benefits: ["Social impact", "Community service", "Personal fulfillment"],
     },
   ];
 
   const futurePlans = [
-    "Expansion to multiple university campuses",
-    "Industry partnership programs",
-    "International collaboration initiatives",
-    "Innovation incubator for student startups",
-    "Alumni mentorship network",
-    "Advanced certification programs",
+    "Expanding Policy Case Competitions",
+    "Enhancing Research and Publications",
+    "Broader Engagement with Policy Experts",
+    "Workshops and Skill-building Initiatives",
+    "Encouraging Diversity and Inclusion",
+    "Community Engagement and Social Impact",
   ];
 
   return (
@@ -41,7 +41,7 @@ const OpportunitiesSection = () => {
             <span className="text-gradient">Opportunities</span> & Future Plans
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Discover the many ways you can grow, contribute, and shape your future with Orbit Club.
+          Our Learning and Development initiatives include
           </p>
         </div>
         
@@ -57,7 +57,7 @@ const OpportunitiesSection = () => {
               >
                 <h4 className="text-xl font-semibold mb-4 text-primary">{opportunity.title}</h4>
                 <p className="text-muted-foreground mb-6">{opportunity.description}</p>
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <div className="text-sm font-medium text-foreground">Benefits:</div>
                   <ul className="space-y-1">
                     {opportunity.benefits.map((benefit, benefitIndex) => (
@@ -67,7 +67,7 @@ const OpportunitiesSection = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
@@ -75,7 +75,7 @@ const OpportunitiesSection = () => {
         
         {/* Future Plans */}
         <div className="bg-card p-8 rounded-xl card-shadow">
-          <h3 className="text-3xl font-bold text-center mb-8">Future Prospects</h3>
+          <h3 className="text-3xl font-bold text-center mb-8">Future Plans</h3>
           <div className="grid md:grid-cols-2 gap-6">
             {futurePlans.map((plan, index) => (
               <div 
@@ -88,11 +88,11 @@ const OpportunitiesSection = () => {
               </div>
             ))}
           </div>
-          <div className="text-center mt-8">
+          {/* <div className="text-center mt-8">
             <Button variant="cta" size="lg">
               Be Part of Our Future
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

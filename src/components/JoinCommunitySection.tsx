@@ -1,29 +1,31 @@
 import { Button } from '@/components/ui/button';
 import { Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import foot from '@/assets/image.png';
 
 const JoinCommunitySection = () => {
   const socialLinks = [
     {
       name: "WhatsApp",
       icon: MessageCircle,
-      url: "https://wa.me/your-number",
+      url: "https://chat.whatsapp.com/IlrbgROyOvRFq55urEspeJ",
       color: "bg-green-500 hover:bg-green-600",
     },
     {
       name: "Instagram",
       icon: Instagram,
-      url: "https://instagram.com/orbitclub",
+      url: "https://www.instagram.com/ppochansraj/",
       color: "bg-pink-500 hover:bg-pink-600",
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "https://linkedin.com/company/orbitclub",
+      url: "https://in.linkedin.com/company/public-policy-opinion-cell-hansraj-college",
       color: "bg-blue-600 hover:bg-blue-700",
     },
   ];
 
   return (
+    <>
     <section className="py-20 hero-gradient">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <div className="animate-fade-in">
@@ -51,16 +53,20 @@ const JoinCommunitySection = () => {
           </div>
           
           <div className="space-y-4">
-            <Button variant="hero" size="lg" className="text-lg px-8">
+            {/* <Button variant="hero" size="lg" className="text-lg px-8">
               Become a Member
-            </Button>
+            </Button> */}
             <p className="text-white/70">
-              Or email us at: <span className="text-white font-semibold">contact@orbitclub.edu</span>
+              Or email us at: <span className="text-white font-semibold"><a href="mailto:ppochansraj@gmail.com">ppochansraj@gmail.com</a></span>
             </p>
           </div>
         </div>
+        
       </div>
+      
     </section>
+    
+  </>
   );
 };
 

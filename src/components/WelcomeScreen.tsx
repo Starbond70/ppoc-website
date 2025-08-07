@@ -23,7 +23,7 @@ const WelcomeScreen = ({ onComplete }: WelcomeScreenProps) => {
       <div className="text-center space-y-8">
         <div className={`transition-all duration-1000 ${showMessage ? 'animate-fade-in' : 'opacity-0'}`}>
           <h1 className="text-6xl font-bold text-white mb-4">
-            Welcome to <span className="text-gradient">Orbit Club</span>
+            Welcome to <span className="text-gradient">Public Policy Opinion Cell</span>
           </h1>
           <p className="text-xl text-white/80 max-w-2xl mx-auto">
             Connecting minds, innovating futures, and building the next generation of leaders
