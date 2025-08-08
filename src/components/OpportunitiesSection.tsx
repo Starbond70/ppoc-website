@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 
 const OpportunitiesSection = () => {
   const opportunities = [
@@ -33,67 +34,180 @@ const OpportunitiesSection = () => {
     "Community Engagement and Social Impact",
   ];
 
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.15, duration: 0.6, type: "spring" as const },
+    }),
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 50 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.5, type: "spring" as const },
+    },
+    hover: {
+      scale: 1.05,
+      y: -5,
+      transition: { duration: 0.2 },
+    },
+  };
+
+  const planItemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.4, type: "spring" as const },
+    },
+  };
+
   return (
     <section className="py-20 section-gradient">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold mb-6">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ amount: 0.5 }}
+          transition={{ duration: 0.7 }}
+        >
+          <motion.h2 
+            className="text-4xl font-bold mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.5 }}
+            transition={{ duration: 0.7 }}
+          >
             <span className="text-gradient">Opportunities</span> & Future Plans
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Our Learning and Development initiatives include
-          </p>
-        </div>
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-muted-foreground max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.5 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            Our Learning and Development initiatives include
+          </motion.p>
+        </motion.div>
         
         {/* Opportunities */}
         <div className="mb-20">
-          <h3 className="text-3xl font-bold text-center mb-12">Growth Opportunities</h3>
-          <div className="grid md:grid-cols-2 gap-8">
+          <motion.h3 
+            className="text-3xl font-bold text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.5 }}
+            transition={{ duration: 0.7 }}
+          >
+            Growth Opportunities
+          </motion.h3>
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.5 }}
+          >
             {opportunities.map((opportunity, index) => (
-              <div 
+              <motion.div 
                 key={index}
-                className="bg-card p-8 rounded-xl card-shadow hover:scale-105 transition-smooth animate-slide-up"
-                style={{animationDelay: `${index * 0.1}s`}}
+                className="bg-card p-8 rounded-xl card-shadow"
+                variants={cardVariants}
+                whileHover="hover"
+                custom={index}
               >
-                <h4 className="text-xl font-semibold mb-4 text-primary">{opportunity.title}</h4>
-                <p className="text-muted-foreground mb-6">{opportunity.description}</p>
-                {/* <div className="space-y-2">
-                  <div className="text-sm font-medium text-foreground">Benefits:</div>
-                  <ul className="space-y-1">
-                    {opportunity.benefits.map((benefit, benefitIndex) => (
-                      <li key={benefitIndex} className="text-sm text-muted-foreground flex items-center">
-                        <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div> */}
-              </div>
+                <motion.h4 
+                  className="text-xl font-semibold mb-4 text-primary"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ amount: 0.5 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                >
+                  {opportunity.title}
+                </motion.h4>
+                <motion.p 
+                  className="text-muted-foreground mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ amount: 0.5 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
+                >
+                  {opportunity.description}
+                </motion.p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
         
         {/* Future Plans */}
-        <div className="bg-card p-8 rounded-xl card-shadow">
-          <h3 className="text-3xl font-bold text-center mb-8">Future Plans</h3>
-          <div className="grid md:grid-cols-2 gap-6">
+        <motion.div 
+          className="bg-card p-8 rounded-xl card-shadow"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ amount: 0.5 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+        >
+          <motion.h3 
+            className="text-3xl font-bold text-center mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.5 }}
+            transition={{ duration: 0.7 }}
+          >
+            Future Plans
+          </motion.h3>
+          <motion.div 
+            className="grid md:grid-cols-2 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.5 }}
+          >
             {futurePlans.map((plan, index) => (
-              <div 
+              <motion.div 
                 key={index}
-                className="flex items-center space-x-3 animate-fade-in"
-                style={{animationDelay: `${index * 0.1}s`}}
+                className="flex items-center space-x-3"
+                variants={planItemVariants}
+                custom={index}
               >
-                <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
-                <span className="text-foreground">{plan}</span>
-              </div>
+                <motion.div 
+                  className="w-3 h-3 bg-primary rounded-full flex-shrink-0"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ amount: 0.5 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 + 0.5 }}
+                />
+                <motion.span 
+                  className="text-foreground"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ amount: 0.5 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 + 0.6 }}
+                >
+                  {plan}
+                </motion.span>
+              </motion.div>
             ))}
-          </div>
-          {/* <div className="text-center mt-8">
-            <Button variant="cta" size="lg">
-              Be Part of Our Future
-            </Button>
-          </div> */}
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

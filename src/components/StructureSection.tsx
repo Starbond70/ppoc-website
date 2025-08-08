@@ -56,12 +56,85 @@ const StructureSection = () => {
     },
   ];
 
+  // Enhanced animation variants
+  const fadeUpVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, type: "spring" as const, stiffness: 100 }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" as const }
+    },
+    hover: {
+      scale: 1.02,
+      transition: { duration: 0.2 }
+    }
+  };
+
+  const iconVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.4, ease: "easeOut" as const }
+    },
+    hover: {
+      scale: 1.1,
+      transition: { duration: 0.2 }
+    }
+  };
+
+  const floatingVariants = {
+    animate: {
+      y: [0, -8, 0],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut" as const
+      }
+    }
+  };
+
+  const pulseGlow = {
+    animate: {
+      boxShadow: [
+        "0 0 20px rgba(59, 130, 246, 0.3)",
+        "0 0 40px rgba(59, 130, 246, 0.6)",
+        "0 0 20px rgba(59, 130, 246, 0.3)"
+      ],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut" as const
+      }
+    }
+  };
+
   const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 20 },
     visible: (i = 0) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.15, duration: 0.6, type: "spring" as const },
+      transition: { delay: i * 0.1, duration: 0.4, ease: "easeOut" as const },
     }),
   };
 
@@ -74,45 +147,62 @@ const StructureSection = () => {
   return (
     <section className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.5 }}
+        >
           <motion.h2
             className="text-4xl font-bold mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ amount: 0.5 }}
-            transition={{ duration: 0.7 }}
+            variants={fadeUpVariants}
           >
             Society <span className="text-gradient">Structure</span>
           </motion.h2>
           <motion.p
             className="text-lg text-muted-foreground max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ amount: 0.5 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            variants={fadeUpVariants}
           >
             Our organized structure ensures effective leadership and seamless operations across all departments.
           </motion.p>
-        </div>
+        </motion.div>
 
         {/* Hierarchy */}
-        <div className="mb-20">
+        <motion.div 
+          className="mb-20"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.5 }}
+        >
           <motion.h3
             className="text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ amount: 0.5 }}
-            transition={{ duration: 0.7 }}
+            variants={fadeUpVariants}
           >
             Organizational Hierarchy
           </motion.h3>
           <motion.div 
-            className="bg-card p-8 rounded-2xl card-shadow border border-border/50"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ amount: 0.5 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            className="bg-card p-8 rounded-2xl card-shadow border border-border/50 relative overflow-hidden"
+            variants={cardVariants}
+            whileHover="hover"
           >
+            {/* Floating particles */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-blue-500/20 rounded-full"
+                  style={{
+                    left: `${15 + i * 15}%`,
+                    top: `${20 + i * 12}%`,
+                  }}
+                  variants={floatingVariants}
+                  animate="animate"
+                  transition={{ delay: i * 0.3 }}
+                />
+              ))}
+            </div>
             <div className="space-y-6">
               {hierarchy.map((level, index) => (
                 <motion.div
@@ -159,22 +249,22 @@ const StructureSection = () => {
                     <div className="p-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {level.positions.map((position, posIndex) => (
-                          <motion.div
-                            key={posIndex}
-                            custom={posIndex}
-                            variants={fadeUp}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ amount: 0.5 }}
-                            className="bg-background p-4 rounded-lg border border-border/30 text-center hover:scale-105 transition-smooth cursor-pointer hover:border-primary/50 hover:shadow-md"
-                            onClick={() => setSelectedPosition(position)}
-                            onMouseEnter={() => setSelectedPosition(position)}
-                            onMouseLeave={() => setSelectedPosition(null)}
-                          >
-                                                         <div className="flex flex-col items-center space-y-2">
+                                                     <motion.div
+                             key={posIndex}
+                             custom={posIndex}
+                             variants={fadeUp}
+                             initial="hidden"
+                             whileInView="visible"
+                             viewport={{ amount: 0.5 }}
+                             className="bg-gray-800 p-4 rounded-lg border border-border/30 text-center hover:scale-102 transition-smooth cursor-pointer hover:border-primary/50 hover:shadow-md"
+                             onClick={() => setSelectedPosition(position)}
+                             onMouseEnter={() => setSelectedPosition(position)}
+                             onMouseLeave={() => setSelectedPosition(null)}
+                           >
+                             <div className="flex flex-col items-center space-y-2">
                                <span className="font-medium text-sm">{position}</span>
                              </div>
-                          </motion.div>
+                           </motion.div>
                         ))}
                       </div>
                     </div>
@@ -183,37 +273,58 @@ const StructureSection = () => {
               ))}
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Departments */}
-        <div>
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.5 }}
+        >
           <motion.h3
             className="text-3xl font-bold text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ amount: 0.5 }}
-            transition={{ duration: 0.7 }}
+            variants={fadeUpVariants}
           >
             Departments
           </motion.h3>
-          <div className="grid md:grid-cols-2 gap-8">
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.5 }}
+          >
             {departments.map((dept, index) => (
               <motion.div
                 key={index}
-                custom={index}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ amount: 0.5 }}
-                className="bg-card p-8 rounded-xl card-shadow hover:scale-105 transition-smooth"
+                className="bg-card p-8 rounded-xl card-shadow relative overflow-hidden"
+                variants={cardVariants}
+                whileHover="hover"
               >
-                <div className="text-4xl mb-4">{dept.icon}</div>
-                <h4 className="text-xl font-semibold mb-3 text-primary">{dept.name}</h4>
-                <p className="text-muted-foreground">{dept.description}</p>
+                                 <motion.div 
+                   className="text-4xl mb-4"
+                   variants={iconVariants}
+                   whileHover="hover"
+                 >
+                   {dept.icon}
+                 </motion.div>
+                                 <motion.h4 
+                   className="text-xl font-semibold mb-3 text-primary"
+                   variants={fadeUpVariants}
+                 >
+                   {dept.name}
+                 </motion.h4>
+                 <motion.p 
+                   className="text-muted-foreground"
+                   variants={fadeUpVariants}
+                 >
+                   {dept.description}
+                 </motion.p>
               </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Popup for position photo */}
