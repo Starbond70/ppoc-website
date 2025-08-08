@@ -8,12 +8,12 @@ const ImpactSection = () => {
 
   const achievements = [
     {
-      title: "1.",
-      description: "Organised POLICY COLLOQUIUM, 2022 and 2023 an inter-college level case study competition designed for policy enthusiasts to strategically formulate and deliberate on major issues",
+      title: "Policy Colloquium 2022 & 2023: Inter-College Policy Challenge",
+      description: "Organised Policy Colloquium in 2022 and 2023 — an inter-college case study competition that brought together bright policy enthusiasts from across institutions. Participants analysed real-world socio-economic and political issues, applied evidence-based reasoning, and crafted strategic policy solutions. The event encouraged research, critical thinking, and debates, fostering collaboration and nurturing future policy leaders.",
     },
     {
-      title: "2.",
-      description: "Hosted several events such as PUBLICON 2023, a one of its kind panel discussions, POLICY CONCOURS which was a highly competitive Policy Case Competitions, SPEAKER SESSIONS and many more",
+      title: "Flagship Policy & Public Affairs Events",
+      description: "Hosted impactful events including PUBLICON 2023 — a unique panel discussion series with experts, policymakers, and thought leaders debating key issues. Organised Policy Concours, a competitive policy case competition testing analytical and strategic skills, and curated multiple Speaker Sessions featuring influential voices. Together, these initiatives fostered policy dialogue, collaborative learning, and leadership development within the student community.",
     }
   ];
 
@@ -23,12 +23,7 @@ const ImpactSection = () => {
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl font-bold mb-6">Our <span className="text-gradient">Impact</span></h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Public Policy and Opinion
-Cell is the very first of its
-kind in the Delhi University
-circuit. A society solely
-devoted to public policy
-and its aspects.
+          The Public Policy and Opinion Cell is the first of its kind in the Delhi University circuit — a pioneering society dedicated entirely to public policy and its many dimensions. We have created a vibrant platform for students to explore governance, law, economics, and civic engagement through events, competitions, expert panels, and research initiatives. By fostering informed debate, evidence-based thinking, and practical problem-solving, we have inspired hundreds of students to critically engage with real-world issues and advocate for meaningful change.
           </p>
         </div>
         
@@ -48,7 +43,7 @@ and its aspects.
         </div> */}
         
         <div className="space-y-8">
-          <h3 className="text-3xl font-bold text-center mb-12">Recent Achievements</h3>
+          <h3 className="text-3xl font-bold text-center mb-12">Our <span className="text-gradient">Achievements</span></h3>
           <div className="grid md:grid-cols-2 gap-8">
             {achievements.map((achievement, index) => (
               <div 
