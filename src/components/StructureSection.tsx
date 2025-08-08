@@ -106,51 +106,83 @@ const StructureSection = () => {
           >
             Organizational Hierarchy
           </motion.h3>
-          <div className="space-y-8">
-            {hierarchy.map((level, index) => (
-              <motion.div
-                key={index}
-                custom={index}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ amount: 0.5 }}
-              >
-                <div className="flex flex-col items-center">
+          <motion.div 
+            className="bg-card p-8 rounded-2xl card-shadow border border-border/50"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.5 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <div className="space-y-6">
+              {hierarchy.map((level, index) => (
+                <motion.div
+                  key={index}
+                  custom={index}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ amount: 0.5 }}
+                  className="border border-border/30 rounded-xl overflow-hidden"
+                >
+                  {/* Category Header */}
                   <motion.div
-                    className={`px-8 py-4 rounded-xl font-semibold text-lg mb-4 ${level.color}`}
-                    initial={{ scale: 0.9, opacity: 0 }}
+                    className={`px-6 py-4 ${level.color} cursor-pointer transition-all duration-300 hover:brightness-110`}
+                    initial={{ scale: 0.95, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ amount: 0.5 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
+                    onClick={() => {
+                      const content = document.getElementById(`hierarchy-${index}`);
+                      if (content) {
+                        content.classList.toggle('max-h-0');
+                        content.classList.toggle('max-h-96');
+                      }
+                    }}
                   >
-                    {level.level}
-                  </motion.div>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
-                    {level.positions.map((position, posIndex) => (
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-xl font-semibold">{level.level}</h4>
                       <motion.div
-                        key={posIndex}
-                        custom={posIndex}
-                        variants={fadeUp}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ amount: 0.5 }}
-                        className="bg-card p-4 rounded-lg card-shadow text-center hover:scale-105 transition-smooth cursor-pointer"
-                        onClick={() => setSelectedPosition(position)}
-                        onMouseEnter={() => setSelectedPosition(position)}
-                        onMouseLeave={() => setSelectedPosition(null)}
+                        className="text-2xl transition-transform duration-300"
+                        animate={{ rotate: 0 }}
+                        whileHover={{ rotate: 180 }}
                       >
-                        <span className="font-medium">{position}</span>
+                        ▼
                       </motion.div>
-                    ))}
+                    </div>
+                  </motion.div>
+                  
+                  {/* Category Content */}
+                  <div 
+                    id={`hierarchy-${index}`}
+                    className="max-h-96 overflow-hidden transition-all duration-500 ease-in-out bg-background/50"
+                  >
+                    <div className="p-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {level.positions.map((position, posIndex) => (
+                          <motion.div
+                            key={posIndex}
+                            custom={posIndex}
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ amount: 0.5 }}
+                            className="bg-background p-4 rounded-lg border border-border/30 text-center hover:scale-105 transition-smooth cursor-pointer hover:border-primary/50 hover:shadow-md"
+                            onClick={() => setSelectedPosition(position)}
+                            onMouseEnter={() => setSelectedPosition(position)}
+                            onMouseLeave={() => setSelectedPosition(null)}
+                          >
+                                                         <div className="flex flex-col items-center space-y-2">
+                               <span className="font-medium text-sm">{position}</span>
+                             </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  {index < hierarchy.length - 1 && (
-                    <div className="w-px h-8 bg-border mt-4"></div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
 
         {/* Departments */}

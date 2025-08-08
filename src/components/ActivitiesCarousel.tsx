@@ -73,7 +73,7 @@ const ActivitiesCarousel = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-secondary">
+    <section className="py-20" style={{ backgroundColor: 'rgba(90, 114, 190, 0.43)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl font-bold text-white mb-6">
