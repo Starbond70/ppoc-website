@@ -68,7 +68,7 @@ const WelcomeScreen = ({ onComplete }: WelcomeScreenProps) => {
                 initial="initial"
                 animate="animate"
               >
-                Public Policy And Opinion Cell
+                <span className="text-gradient">Public Policy</span> And <span className="text-gradient">Opinion</span> Cell
               </motion.h1>
             )}
           </motion.div>

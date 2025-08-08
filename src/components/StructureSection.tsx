@@ -1,16 +1,30 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const positionPhotos: Record<string, string> = {
+  President: "/images/president.jpg",
+  "Vice President": "/images/vice-president.jpg",
+  "General Secretary": "/images/general-secretary.jpg",
+  "Joint Secretary": "/images/joint-secretary.jpg",
+  "Departmental Head": "/images/departmental-head.jpg",
+  "Senior Member": "/images/senior-member.jpg",
+  "Junior Member": "/images/junior-member.jpg",
+  Assistant: "/images/assistant.jpg",
+};
 
 const StructureSection = () => {
+  const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
+
   const hierarchy = [
     {
       level: "Core",
       positions: ["President", "Vice President", "General Secretary", "Joint Secretary"],
-      color: "bg-primary text-white", // Distinct color for Core
+      color: "bg-primary text-white",
     },
     {
       level: "Cabinet",
       positions: ["Departmental Head", "Senior Member", "Junior Member", "Assistant"],
-      color: "bg-accent text-white", // Distinct color for Cabinet
+      color: "bg-accent text-white",
     },
   ];
 
@@ -42,7 +56,6 @@ const StructureSection = () => {
     },
   ];
 
-  // Animation variants
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     visible: (i = 0) => ({
@@ -50,6 +63,12 @@ const StructureSection = () => {
       y: 0,
       transition: { delay: i * 0.15, duration: 0.6, type: "spring" as const },
     }),
+  };
+
+  const popupVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 40 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, type: "spring" as const } },
+    exit: { opacity: 0, scale: 0.8, y: 40, transition: { duration: 0.3 } },
   };
 
   return (
@@ -116,7 +135,10 @@ const StructureSection = () => {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ amount: 0.5 }}
-                        className="bg-card p-4 rounded-lg card-shadow text-center hover:scale-105 transition-smooth"
+                        className="bg-card p-4 rounded-lg card-shadow text-center hover:scale-105 transition-smooth cursor-pointer"
+                        onClick={() => setSelectedPosition(position)}
+                        onMouseEnter={() => setSelectedPosition(position)}
+                        onMouseLeave={() => setSelectedPosition(null)}
                       >
                         <span className="font-medium">{position}</span>
                       </motion.div>
@@ -161,6 +183,42 @@ const StructureSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Popup for position photo */}
+      <AnimatePresence>
+        {selectedPosition && positionPhotos[selectedPosition] && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+            variants={popupVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            onClick={() => setSelectedPosition(null)}
+          >
+            <motion.div
+              className="bg-white rounded-xl p-6 shadow-xl relative"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              onClick={e => e.stopPropagation()}
+            >
+              <img
+                src={positionPhotos[selectedPosition]}
+                alt={selectedPosition}
+                className="w-64 h-64 object-cover rounded-lg mb-4"
+              />
+              <div className="text-center font-bold text-lg">{selectedPosition}</div>
+              <button
+                className="absolute top-2 right-2 text-xl font-bold text-gray-500 hover:text-gray-700"
+                onClick={() => setSelectedPosition(null)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
