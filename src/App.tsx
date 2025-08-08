@@ -22,15 +22,18 @@ const App = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
-    <footer className="text-white/70 flex justify-center w-full bg-black">
-    <img src={foot} alt="Logo" className="w-50 h-24 mb-6 bottom-0" />
-    <img src={foot} alt="Logo" className="w-50 h-24 mb-6 bottom-0" />
-    <img src={foot} alt="Logo" className="w-50 h-24 mb-6 bottom-0" />
-    <img src={foot} alt="Logo" className="w-50 h-24 mb-6 bottom-0" />
-  </footer>
-  <button className="fixed bottom-4 right-4 z-50 bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/80 transition-colors" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-    <ArrowUpIcon className="w-6 h-6" />
-  </button>
+    <footer className="text-white/70 w-full bg-black py-6">
+      <div className="flex items-center gap-4 justify-center">
+        <img src={foot} alt="Logo" className="w-32 h-auto mb-2" />
+        <img src={foot} alt="Logo" className="w-32 h-auto mb-2" />
+      </div>
+    </footer>
+    <button
+      className="fixed bottom-4 right-4 z-50 bg-primary text-white px-6 py-2 rounded-full hover:bg-primary/80 transition-colors"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    >
+      <ArrowUpIcon className="w-6 h-6" />
+    </button>
   </QueryClientProvider>
 );
 
