@@ -266,23 +266,51 @@ const AboutSection = () => {
 
         {/* Publications Section */}
         <motion.div 
-          className="mt-16 text-center"
+          className="mt-16 text-center relative overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
+          {/* Floating particles for publications */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-blue-500/20 rounded-full"
+                style={{
+                  left: `${15 + i * 15}%`,
+                  top: `${20 + i * 10}%`,
+                }}
+                variants={floatingVariants}
+                animate="animate"
+                transition={{ delay: i * 0.2 }}
+              />
+            ))}
+          </div>
+
           <motion.h3 
-            className="text-2xl font-bold mb-6"
+            className="text-3xl font-bold mb-8 relative z-10"
             variants={fadeUpVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ amount: 0.5 }}
           >
-            Our Publications
+            Our <span className="text-gradient">Publications</span>
           </motion.h3>
+          
+          <motion.p 
+            className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto relative z-10"
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.5 }}
+          >
+            Explore our latest newsletters and research publications
+          </motion.p>
+
           <motion.div 
-            className="flex flex-col md:flex-row gap-4 justify-center"
+            className="flex flex-col md:flex-row gap-6 justify-center relative z-10"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -292,21 +320,88 @@ const AboutSection = () => {
               href="https://drive.google.com/file/d/10Sfd4767To6pnmeLwOdA986FDRtrjdf-/view"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary text-white px-6 py-2 rounded-lg font-semibold shadow hover:bg-primary/80 transition-smooth"
+              className="group relative bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
               variants={cardVariants}
-              whileHover={{ scale: 1.05, y: -5 }}
+              whileHover={{ scale: 1.05, y: -8 }}
             >
-              PPOC Newsletter ED.1 Vol.1
+              {/* Glow effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl blur-xl"
+                variants={pulseGlow}
+                animate="animate"
+              />
+              
+              {/* Floating particles inside button */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-white/30 rounded-full"
+                    style={{
+                      left: `${20 + i * 25}%`,
+                      top: `${30 + i * 20}%`,
+                    }}
+                    variants={floatingVariants}
+                    animate="animate"
+                    transition={{ delay: i * 0.3 }}
+                  />
+                ))}
+              </div>
+
+              <span className="relative z-10 flex items-center gap-2">
+                📄 PPOC Newsletter ED.1 Vol.1
+                <motion.span
+                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={{ x: -10 }}
+                  whileHover={{ x: 0 }}
+                >
+                  →
+                </motion.span>
+              </span>
             </motion.a>
+
             <motion.a
               href="https://drive.google.com/file/d/1uLh3dJgPXDg6NeXssDpNrXDh2UX_34BJ/view"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary text-white px-6 py-2 rounded-lg font-semibold shadow hover:bg-primary/80 transition-smooth"
+              className="group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
               variants={cardVariants}
-              whileHover={{ scale: 1.05, y: -5 }}
+              whileHover={{ scale: 1.05, y: -8 }}
             >
-              PPOC Newsletter ED.1 Vol.2
+              {/* Glow effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl blur-xl"
+                variants={pulseGlow}
+                animate="animate"
+              />
+              
+              {/* Floating particles inside button */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-white/30 rounded-full"
+                    style={{
+                      left: `${20 + i * 25}%`,
+                      top: `${30 + i * 20}%`,
+                    }}
+                    variants={floatingVariants}
+                    animate="animate"
+                    transition={{ delay: i * 0.3 }}
+                  />
+                ))}
+              </div>
+
+              <span className="relative z-10 flex items-center gap-2">
+                📄 PPOC Newsletter ED.1 Vol.2
+                <motion.span
+                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  initial={{ x: -10 }}
+                  whileHover={{ x: 0 }}
+                >
+                  →
+                </motion.span>
+              </span>
             </motion.a>
           </motion.div>
         </motion.div>
