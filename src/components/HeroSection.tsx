@@ -9,20 +9,21 @@ const HeroSection = () => {
   // Track scroll progress of hero section
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"], // Start at top, end when hero leaves
+    offset: ["start start", "end start"],
   });
 
-  // Scale: grows slightly then returns to normal
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.05, 1]);
+  // Scale vertically only for a jelly stretch effect without tilt
+  // We scale Y from 1 to 1.08 and back to 1 smoothly
+  const scaleY = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.08, 1]);
 
-  // Skew effect for jelly feeling
-  const skewY = useTransform(scrollYProgress, [0, 0.5, 1], [0, -3, 0]);
+  // Optional: very subtle vertical translate to enhance stretch feel
+  const translateY = useTransform(scrollYProgress, [0, 0.5, 1], [0, -10, 0]);
 
   return (
     <motion.section
       ref={ref}
-      style={{ scale, skewY }}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden origin-top"
+      style={{ scaleY, translateY, transformOrigin: "top center" }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -47,30 +48,6 @@ const HeroSection = () => {
             public issues, analyse the policies circumventing them and draft
             some deeply scrutinised alternatives.
           </p>
-          {/* 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              variant="cta"
-              size="lg"
-              className="text-lg"
-              onClick={() =>
-                window.scrollTo({
-                  top: document.getElementById("join-community")!.offsetTop,
-                  behavior: "smooth",
-                })
-              }
-            >
-              Join Our Community
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="text-lg border-white text-white hover:bg-white hover:text-primary"
-            >
-              Explore Activities
-            </Button>
-          </div> 
-          */}
         </div>
       </div>
 
