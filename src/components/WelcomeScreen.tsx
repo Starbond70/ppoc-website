@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import { motion, AnimatePresence } from 'framer-motion';
+import logo from '@/assets/logo.png';
 
 interface WelcomeScreenProps {
   onComplete: () => void;
-  backgroundGradientClass?: string;
 }
 
-const WelcomeScreen = ({ onComplete, backgroundGradientClass }: WelcomeScreenProps) => {
-  const [showMessage, setShowMessage] = useState(false);
-  const [showButton, setShowButton] = useState(false);
+const WelcomeScreen = ({ onComplete }: WelcomeScreenProps) => {
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setShowMessage(true), 500);
+    const timer1 = setTimeout(() => {
+      setShowContent(true);
+    }, 700);
     const timer2 = setTimeout(() => onComplete(), 5000);
     return () => {
       clearTimeout(timer1);
@@ -19,19 +20,59 @@ const WelcomeScreen = ({ onComplete, backgroundGradientClass }: WelcomeScreenPro
     };
   }, [onComplete]);
 
-  const gradientClass = backgroundGradientClass || "hero-gradient";
+  const logoVariants = {
+    initial: { opacity: 1, scale: 1, x: 0 },
+    animate: {
+      x: -60,
+      scale: 0.9,
+      rotate: -5,
+      opacity: 1,
+      transition: { duration: 1, ease: [0.4, 0, 0.2, 1], type: "spring", stiffness: 100 },
+    },
+  };
+
+  const textVariants = {
+    initial: { opacity: 0, x: 80, scale: 0.9 },
+    animate: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: { duration: 1, ease: [0.4, 0, 0.2, 1], type: "spring", stiffness: 80 },
+    },
+  };
 
   return (
-    <div className={`fixed inset-0 ${gradientClass} flex items-center justify-center z-50 overflow-auto`}>
-      <div className="text-center space-y-6 p-4">
-        <div className={`transition-all duration-1000 ${showMessage ? 'animate-fade-in' : 'opacity-0'}`}>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
-            Welcome to <span className="text-gradient">Public Policy Opinion Cell</span>
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-md sm:max-w-lg md:max-w-2xl mx-auto">
-            Connecting minds, innovating futures, and building the next generation of leaders
-          </p>
-        </div>
+    <div className="fixed inset-0 bg-black flex items-center justify-center z-50 overflow-auto">
+      <div className="flex items-center justify-center h-full">
+        <AnimatePresence>
+          <motion.div
+            className="flex items-center"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+          >
+            <motion.img
+              key="logo"
+              src={logo}
+              alt="Logo"
+              className="w-32 h-32 mr-6"
+              variants={logoVariants}
+              initial="initial"
+              animate={showContent ? "animate" : "initial"}
+            />
+            {showContent && (
+              <motion.h1
+                key="text"
+                className="text-4xl sm:text-5xl md:text-6xl font-bold text-white"
+                style={{ whiteSpace: 'nowrap' }}
+                variants={textVariants}
+                initial="initial"
+                animate="animate"
+              >
+                Public Policy And Opinion Cell
+              </motion.h1>
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
